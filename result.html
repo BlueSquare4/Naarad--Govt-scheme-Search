@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Naarad</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .scheme {
+            background-color: #fff;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .scheme h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        a{
+            text-decoration: none;
+        }
+        .scheme p {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 10px;
+        }
+        .show-more {
+            font-size: 16px;
+            color: #007bff;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+        .show-more:hover {
+            color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="scheme-list">Here are the government schemes tailored to your needs:</div>
+    </div>
+
+    <script>
+        // Get URL query parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const income = parseInt(urlParams.get('income'));  // Get the 'income' parameter
+
+        const schemes = [];
+        
+        // Add conditions to check the eligibility and add schemes
+        if (income < 200000) {
+            schemes.push({
+                name: "Ayushman Bharat Pradhan Mantri Jan Arogya Yojana",
+                description: "Provides health insurance coverage of up to ₹5 lakh per family for secondary and tertiary care hospitalization to vulnerable families.",
+                link: "https://www.india.gov.in/spotlight/ayushman-bharat-pradhan-mantri-jan-arogya-yojana" 
+            });
+            schemes.push({
+                name: "Pradhan Mantri Kisan Samman Nidhi (PM-KISAN)",
+                description: "Provides income support to farmers, giving ₹6,000 annually in three equal installments.",
+                links: "https://pmkisan.gov.in/"
+            });
+        }
+
+        if (income < 500000) {
+            schemes.push({
+                name: "PMAY - Pradhan Mantri Awas Yojana",
+                description: "Provides affordable housing for the urban poor with a goal of building 20 million affordable houses by 2022."
+            });
+        }
+
+        if (income < 300000) {
+            schemes.push({
+                name: "Pradhan Mantri Jan Dhan Yojana (PMJDY)",
+                description: "PMJDY is a national mission to ensure access to financial services such as bank accounts, credit, insurance, and pensions for the underprivileged."
+            });
+        }
+
+        // Display the schemes on the page
+        const schemeListDiv = document.getElementById("scheme-list");
+
+        if (schemes.length > 0) {
+            schemes.forEach(function(scheme) {
+                const schemeDiv = document.createElement("div");
+                schemeDiv.classList.add("scheme");
+                schemeDiv.innerHTML = `
+                    <h2>${scheme.name}</h2>
+                    <p>${scheme.description}</p>
+                    <a href="${scheme.link}">Show More</a>
+                `;
+                schemeListDiv.appendChild(schemeDiv);
+            });
+        } else {
+            schemeListDiv.innerHTML = "<p>No schemes available for your income range.</p>";
+        }
+    </script>
+</body>
+</html>

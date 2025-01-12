@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Naarad</title>
+  </head>
+  <body>
+    <div class="form-container">
+      <h2>Government Scheme Eligibility</h2>
+      <form action="result.html" method="GET">
+        
+        <!-- Age -->
+        <label for="age">Age</label>
+        <input
+          type="number"
+          id="age"
+          name="age"
+          placeholder="Enter your age"
+          required
+        />
+
+        <!-- Gender -->
+        <label for="gender">Gender</label>
+        <select id="gender" name="gender" required>
+          <option value="" disabled selected>Select your gender</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+          <option value="other">Other</option>
+          <option value="prefer_not_to_say">Prefer not to say</option>
+        </select>
+
+        <!-- Marital Status -->
+        <label for="marital Status">Marital Status</label>
+        <select id="mar" name="marital" required>
+          <option value="" disabled selected>Select</option>
+          <option value="married">Married</option>
+          <option value="unmarried">Unmarried</option>
+          <option value="divorced">Divorced</option>
+        </select>
+
+        <!-- State -->
+        <label for="state">State</label>
+        <input
+          type="text"
+          id="state"
+          name="state"
+          placeholder="Enter your state"
+          required
+        />
+
+        <!-- Urban/Rural -->
+        <label for="urban">Urban or Rural</label>
+        <select id="urban" name="urban" required>
+          <option value="" disabled selected>Select your area type</option>
+          <option value="urban">Urban</option>
+          <option value="rural">Rural</option>
+        </select>
+
+        <!-- Annual Income -->
+        <label for="income">Annual Income</label>
+        <input
+          type="number"
+          id="income"
+          name="income"
+          placeholder="Enter your annual income"
+          required
+        />
+
+        <!-- Caste -->
+        <label for="caste">Caste</label>
+        <input
+          type="text"
+          id="caste"
+          name="caste"
+          placeholder="Enter your caste"
+          required
+        />
+
+        <!-- Religion -->
+        <label for="religion">Religion</label>
+        <input
+          type="text"
+          id="religion"
+          name="religion"
+          placeholder="Enter your religion"
+          required
+        />
+
+        <!-- Education -->
+        <label for="education">Education Level</label>
+        <select id="education" name="education" required>
+          <option value="" disabled selected>Select your education level</option>
+          <option value="highschool">High School</option>
+          <option value="diploma">Diploma</option>
+          <option value="undergraduate">Undergraduate</option>
+          <option value="graduate">Graduate</option>
+          <option value="postgraduate">Postgraduate</option>
+          <option value="other">Other</option>
+        </select>
+
+        <!-- Citizenship -->
+        <label for="citizenship">Citizenship</label>
+        <select id="citizenship" name="citizenship" required>
+          <option value="" disabled selected>Select your citizenship</option>
+          <option value="indian">Indian</option>
+          <option value="non-indian">Non-Indian</option>
+        </select>
+
+        <!-- Employment Status -->
+        <label for="employment-status">Employment Status</label>
+        <select id="employment-status" name="employment-status" required onchange="toggleOccupation()">
+          <option value="" disabled selected>Select employment status</option>
+          <option value="employed">Employed</option>
+          <option value="unemployed">Unemployed</option>
+          <option value="student">Student</option>
+        </select>
+        
+        <!-- Occupation -->
+        <label for="occupation">Occupation</label>
+        <input
+          type="text"
+          id="occupation"
+          name="occupation"
+          placeholder="Enter your occupation"
+          required
+          />
+
+        <!-- Sector of Interest -->
+        <label for="sector">Sector of Interest</label>
+        <input
+          type="text"
+          id="sector"
+          name="sector"
+          placeholder="Enter your sector of interest"
+          required
+        />
+
+        <!-- Disability Status -->
+        <label for="disability">Disability Status</label>
+        <select id="disability" name="disability" required>
+          <option value="" disabled selected>Select disability status</option>
+          <option value="none">None</option>
+          <option value="physical">Physical Disability</option>
+          <option value="mental">Mental Disability</option>
+          <option value="both">Both</option>
+        </select>
+
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+
+    <script>
+        function toggleOccupation() {
+          var employmentStatus = document.getElementById("employment-status").value;
+          var occupationField = document.getElementById("occupation");
+      
+          if (employmentStatus === "student") {
+            occupationField.disabled = true;
+          } else {
+            occupationField.disabled = false;
+          }
+        }
+      </script>
+  </body>
+</html>

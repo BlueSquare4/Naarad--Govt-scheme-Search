@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificate Upload</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5dc; /* Creamy background */
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+        select, input[type="file"], button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        button {
+            background-color: #6c757d;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #5a6268;
+        }
+        .upload-section {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Upload Certificates</h2>
+
+        <!-- Identity Certificates -->
+        <label for="identity-certificate">Identity Certificates</label>
+        <select id="identity-certificate">
+            <option value="" disabled selected>Select Identity Certificate</option>
+            <option value="birth">Birth Certificate</option>
+            <option value="marriage">Marriage Certificate</option>
+            <option value="passport">Passport</option>
+            <option value="driving-license">Driving License</option>
+        </select>
+        <div id="identity-upload" class="upload-section">
+            <label for="identity-file">Upload Selected Certificate</label>
+            <input type="file" id="identity-file" accept=".pdf,.jpg,.jpeg,.png">
+        </div>
+
+        <!-- Educational Certificates -->
+        <label for="education-certificate">Educational Certificates</label>
+        <select id="education-certificate">
+            <option value="" disabled selected>Select Educational Certificate</option>
+            <option value="character">Character Certificate</option>
+            <option value="degree">Degree/Diploma</option>
+            <option value="marksheet">Marksheet</option>
+            <option value="transfer">Transfer Certificate</option>
+        </select>
+        <div id="education-upload" class="upload-section">
+            <label for="education-file">Upload Selected Certificate</label>
+            <input type="file" id="education-file" accept=".pdf,.jpg,.jpeg,.png">
+        </div>
+
+        <!-- Employment Certificates -->
+        <label for="employment-certificate">Employment Certificates</label>
+        <select id="employment-certificate">
+            <option value="" disabled selected>Select Employment Certificate</option>
+            <option value="experience">Experience Certificate</option>
+            <option value="noc">No Objection Certificate (NOC)</option>
+            <option value="salary">Salary Certificate</option>
+        </select>
+        <div id="employment-upload" class="upload-section">
+            <label for="employment-file">Upload Selected Certificate</label>
+            <input type="file" id="employment-file" accept=".pdf,.jpg,.jpeg,.png">
+        </div>
+
+        <!-- Residency Certificates -->
+        <label for="residency-certificate">Residency Certificates</label>
+        <select id="residency-certificate">
+            <option value="" disabled selected>Select Residency Certificate</option>
+            <option value="residential">Residential Certificate</option>
+            <option value="domicile">Domicile Certificate</option>
+            <option value="electricity-bill">Electricity Bill</option>
+        </select>
+        <div id="residency-upload" class="upload-section">
+            <label for="residency-file">Upload Selected Certificate</label>
+            <input type="file" id="residency-file" accept=".pdf,.jpg,.jpeg,.png">
+        </div>
+
+        <!-- Financial Certificates -->
+        <label for="financial-certificate">Financial Certificates</label>
+        <select id="financial-certificate">
+            <option value="" disabled selected>Select Financial Certificate</option>
+            <option value="income">Income Certificate</option>
+            <option value="tax">Tax Certificate</option>
+            <option value="loan-clearance">Loan Clearance Certificate</option>
+        </select>
+        <div id="financial-upload" class="upload-section">
+            <label for="financial-file">Upload Selected Certificate</label>
+            <input type="file" id="financial-file" accept=".pdf,.jpg,.jpeg,.png">
+        </div>
+
+        <button type="submit" onclick="window.location.href='result.html'">Submit</button>
+    </div>
+
+    <script>
+        // Function to handle dropdown and file upload display
+        function setupDropdown(selectId, uploadId) {
+            const selectElement = document.getElementById(selectId);
+            const uploadSection = document.getElementById(uploadId);
+
+            selectElement.addEventListener('change', () => {
+                if (selectElement.value) {
+                    uploadSection.style.display = 'block';
+                } else {
+                    uploadSection.style.display = 'none';
+                }
+            });
+        }
+
+        // Setup each dropdown
+        setupDropdown('identity-certificate', 'identity-upload');
+        setupDropdown('education-certificate', 'education-upload');
+        setupDropdown('employment-certificate', 'employment-upload');
+        setupDropdown('residency-certificate', 'residency-upload');
+        setupDropdown('financial-certificate', 'financial-upload');
+    </script>
+</body>
+</html>
