@@ -1,58 +1,210 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f5f5dc; /* Creamy background */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+:root {
+    --primary: #6C63FF;
+    --secondary: #FF6584;
+    --background: #F0F2F5;
+    --text: #333;
+    --border-radius: 10px;
+}
+
+* {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    scroll-behavior: smooth;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: var(--background);
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    height: 150vh;
+    padding: 20px;
+    scroll-behavior: smooth;
+    position: relative;
 }
-.form-container {
-    padding-top: 20px;
-    background-color: #ffffff;
-    padding: 20px 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    max-width: 400px;
-    width: 100%;
+
+/* Background Decorative SVG */
+.background-svg {
+    position: absolute;
+    top: -50px;
+    left: -50px;
+    width: 200px;
+    opacity: 0.1;
+    z-index: -1;
 }
-h2 {
-    margin-bottom: 20px;
+.background-svg1 {
+    position: absolute;
+    top: 50px;
+    right: -50px;
+    width: 200px;
+    opacity: 0.1;
+    z-index: -1;
+}
+.background-svg2 {
+    position: absolute;
+    bottom: 50px;
+    left: -50px;
+    width: 200px;
+    opacity: 0.1;
+    z-index: -1;
+}
+.background-svg3 {
+    position: absolute;
+    bottom: 500px;
+    right: -50px;
+    width: 200px;
+    opacity: 0.1;
+    z-index: -1;
+}
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .logo {
+    width: 60px;
+    height: auto;
+    border-radius: 20px;
+  }
+
+/* Container */
+.container {
+    max-width: 600px;
+    top:-120px;
+    background: white;
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     text-align: center;
-    color: #333;
+    position: relative;
 }
+
+/* Form Header with SVG */
+.form-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+h1 {
+    font-size: 2rem;
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+/* SVG beside form title */
+.form-header svg {
+    width: 40px;
+    height: 40px;
+    fill: var(--primary);
+}
+
+form {
+    display: grid;
+    gap: 1.5rem;
+    text-align: left;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
 label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
+    font-weight: 600;
+    color: var(--text);
 }
-input[type="text"],
-input[type="email"],
-input[type="number"],
-textarea,
-select {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
+
+input, select {
+    padding: 0.75rem;
+    border: 2px solid #ddd;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    transition: border-color 0.3s ease-in-out;
 }
-textarea {
-    resize: vertical;
+
+input:focus, select:focus {
+    outline: none;
+    border-color: var(--primary);
 }
+
 button {
-    width: 100%;
-    padding: 10px;
-    background-color: #6c757d;
+    background: var(--primary);
     color: white;
+    padding: 1rem;
+    font-size: 1.1rem;
+    font-weight: 600;
     border: none;
-    border-radius: 5px;
+    border-radius: var(--border-radius);
     cursor: pointer;
-    font-size: 16px;
+    transition: 0.3s ease-in-out;
 }
+
 button:hover {
-    background-color: #5a6268;
+    background: #5A52D5;
 }
+
+/* Hover Effect */
+input:hover, select:hover {
+    border-color: var(--secondary);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 1.5rem;
+    }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.container {
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+.rorsvg {
+    position: relative;
+    right: 500px; /* Adjust this value to position it exactly as needed */
+    top: 450px;
+    transform: translateY(-50%);
+}
+.rorsvg2 {
+    position: relative;
+    left: 500px; /* Adjust this value to position it exactly as needed */
+    top: 800px;
+    transform: translateY(-50%);
+}
+
+
+
+/* Interactive SVG */
+.animated-svg {
+    width: 100px;
+    height: 100px;
+    /* margin: 20px auto; */
+    animation: rotate 5s infinite linear;
+  }
+
+  .animated-svg2 {
+    width: 100px;
+    height: 100px;
+    /* margin: 20px auto; */
+    animation: rotate 5s infinite linear;
+  }
+  
+  @keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
