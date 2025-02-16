@@ -85,14 +85,35 @@
         </div>
 
         <div class="form-group">
-          <label for="caste">Caste</label>
-          <input type="text" id="caste" name="caste" placeholder="Enter your caste" required />
-        </div>
-
-        <div class="form-group">
           <label for="religion">Religion</label>
-          <input type="text" id="religion" name="religion" placeholder="Enter your religion" required />
+          <select id="religion" name="religion" required onchange="toggleOtherInput('religion', 'otherReligion')">
+            <option value="" disabled selected>Select your religion</option>
+            <option value="Hinduism">Hinduism</option>
+            <option value="Islam">Islam</option>
+            <option value="Christianity">Christianity</option>
+            <option value="Sikhism">Sikhism</option>
+            <option value="Buddhism">Buddhism</option>
+            <option value="Jainism">Jainism</option>
+            <option value="Zoroastrianism">Zoroastrianism</option>
+            <option value="Judaism">Judaism</option>
+            <option value="Others">Others</option>
+            <input type="text" id="otherReligion" name="otherReligion" placeholder="Please specify" style="display: none; margin-top:10px" />
+          </select>
         </div>
+        
+        <div class="form-group">
+          <label for="caste">Caste</label>
+          <select id="caste" name="caste" required>
+            <option value="" disabled selected>Select your caste</option>
+            <option value="General">General (Unreserved)</option>
+            <option value="OBC">OBC (Other Backward Classes)</option>
+            <option value="SC">SC (Scheduled Caste)</option>
+            <option value="ST">ST (Scheduled Tribe)</option>
+            <option value="EWS">EWS (Economically Weaker Section)</option>
+            <option value="Prefer not to say">Prefer not to say</option>
+          </select>
+        </div>
+        
 
         <div class="form-group">
           <label for="education">Education Level</label>
@@ -128,12 +149,42 @@
 
         <div class="form-group">
           <label for="occupation">Occupation</label>
-          <input type="text" id="occupation" name="occupation" placeholder="Enter your occupation" required />
+          <select id="occupation" name="occupation" required onchange="toggleOtherInput('occupation', 'otherOccupation')">
+            <option value="" disabled selected>Select your occupation</option>
+            <option value="Student">Student</option>
+            <option value="Engineer">Engineer</option>
+            <option value="Doctor">Doctor</option>
+            <option value="Lawyer">Lawyer</option>
+            <option value="Artist">Artist</option>
+            <option value="Teacher">Teacher</option>
+            <option value="Businessperson">Businessperson</option>
+            <option value="Government Employee">Government Employee</option>
+            <option value="Researcher">Researcher</option>
+            <option value="Freelancer">Freelancer</option>
+            <option value="Unemployed">Unemployed</option>
+            <option value="Others">Others</option>
+          </select>
+          <input type="text" id="otherOccupation" name="otherOccupation" placeholder="Please specify" style="display: none; margin-top:10px" />
         </div>
-
+        
         <div class="form-group">
           <label for="sector">Sector of Interest</label>
-          <input type="text" id="sector" name="sector" placeholder="Enter your sector of interest" required />
+          <select id="sector" name="sector" required onchange="toggleOtherInput('sector', 'otherSector')">
+            <option value="" disabled selected>Select your sector of interest</option>
+            <option value="Technology">Technology (AI, Software, Hardware, etc.)</option>
+            <option value="Finance & Banking">Finance & Banking</option>
+            <option value="Healthcare & Medicine">Healthcare & Medicine</option>
+            <option value="Education & Research">Education & Research</option>
+            <option value="Government & Administration">Government & Administration</option>
+            <option value="Arts & Entertainment">Arts & Entertainment</option>
+            <option value="Manufacturing & Industrial">Manufacturing & Industrial</option>
+            <option value="Environment & Sustainability">Environment & Sustainability</option>
+            <option value="Media & Journalism">Media & Journalism</option>
+            <option value="Sports & Fitness">Sports & Fitness</option>
+            <option value="Travel & Hospitality">Travel & Hospitality</option>
+            <option value="Others">Others</option>
+          </select>
+          <input type="text" id="otherSector" name="otherSector" placeholder="Please specify" style="display: none; margin-top:10px" />
         </div>
 
         <div class="form-group">
@@ -160,6 +211,18 @@
           occupationField.disabled = true;
         } else {
           occupationField.disabled = false;
+        }
+      }
+      function toggleOtherInput(selectId, inputId) {
+        var selectElement = document.getElementById(selectId);
+        var inputElement = document.getElementById(inputId);
+        if (selectElement.value === "Others") {
+          inputElement.style.display = "block";
+          inputElement.required = true;
+        } else {
+          inputElement.style.display = "none";
+          inputElement.required = false;
+          inputElement.value = "";
         }
       }
     </script>
