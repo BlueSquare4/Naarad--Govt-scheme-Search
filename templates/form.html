@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="logo.png" />
+    <title>Naarad - Government Scheme Eligibility</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style/style.css') }}"
+    />
+    <style>
+      /* Loader styles */
+      #loader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.8);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 10000;
+      }
+      .loader-spinner {
+        border: 16px solid #f3f3f3; /* Light grey */
+        border-top: 16px solid #007BFF; /* Blue */
+        border-radius: 50%;
+        width: 120px;
+        height: 120px;
+        animation: spin 2s linear infinite;
+      }
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="loader">
+      <div class="loader-spinner"></div>
+    </div>
+    <header>
+      <div class="logo-container">
+        <img
+          src="{{ url_for('static', filename='img/logo.png') }}"
+          alt="Naarad Logo"
+          class="logo"
+        />
+        <h1>Naarad - Government Scheme Eligibility</h1>
+      </div>
+    </header>
+    <div>
+      <img
+        src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cpath fill='%236C63FF' d='M43.3,-74.4C55.7,-67.1,65.6,-55.7,72.3,-43.1C78.9,-30.5,82.3,-16.8,83.4,-2.9C84.5,11,83.3,25,78.6,38.6C73.8,52.1,65.4,65.2,52.8,74C40.2,82.9,23.5,87.5,7.7,81.5C-8.2,75.5,-16.4,59,-24.7,46.4C-33,33.8,-41.3,25.1,-52.5,13.6C-63.7,2.1,-77.8,-12.1,-78.1,-24.9C-78.4,-37.7,-64.8,-49.1,-50.7,-55.7C-36.6,-62.3,-22,-64.2,-7.5,-61.8C7,-59.5,14.1,-53,21.1,-62.7C28.2,-72.3,35.2,-98.2,43.3,-74.4Z' transform='translate(100 100)'/%3E%3C/svg%3E"
+        class="background-svg"
+      />
+      <img
+        src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cpath fill='%236C63FF' d='M43.3,-74.4C55.7,-67.1,65.6,-55.7,72.3,-43.1C78.9,-30.5,82.3,-16.8,83.4,-2.9C84.5,11,83.3,25,78.6,38.6C73.8,52.1,65.4,65.2,52.8,74C40.2,82.9,23.5,87.5,7.7,81.5C-8.2,75.5,-16.4,59,-24.7,46.4C-33,33.8,-41.3,25.1,-52.5,13.6C-63.7,2.1,-77.8,-12.1,-78.1,-24.9C-78.4,-37.7,-64.8,-49.1,-50.7,-55.7C-36.6,-62.3,-22,-64.2,-7.5,-61.8C7,-59.5,14.1,-53,21.1,-62.7C28.2,-72.3,35.2,-98.2,43.3,-74.4Z' transform='translate(100 100)'/%3E%3C/svg%3E"
+        class="background-svg1"
+      />
+      <img
+        src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cpath fill='%236C63FF' d='M43.3,-74.4C55.7,-67.1,65.6,-55.7,72.3,-43.1C78.9,-30.5,82.3,-16.8,83.4,-2.9C84.5,11,83.3,25,78.6,38.6C73.8,52.1,65.4,65.2,52.8,74C40.2,82.9,23.5,87.5,7.7,81.5C-8.2,75.5,-16.4,59,-24.7,46.4C-33,33.8,-41.3,25.1,-52.5,13.6C-63.7,2.1,-77.8,-12.1,-78.1,-24.9C-78.4,-37.7,-64.8,-49.1,-50.7,-55.7C-36.6,-62.3,-22,-64.2,-7.5,-61.8C7,-59.5,14.1,-53,21.1,-62.7C28.2,-72.3,35.2,-98.2,43.3,-74.4Z' transform='translate(100 100)'/%3E%3C/svg%3E"
+        class="background-svg2"
+      />
+      <img
+        src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cpath fill='%236C63FF' d='M43.3,-74.4C55.7,-67.1,65.6,-55.7,72.3,-43.1C78.9,-30.5,82.3,-16.8,83.4,-2.9C84.5,11,83.3,25,78.6,38.6C73.8,52.1,65.4,65.2,52.8,74C40.2,82.9,23.5,87.5,7.7,81.5C-8.2,75.5,-16.4,59,-24.7,46.4C-33,33.8,-41.3,25.1,-52.5,13.6C-63.7,2.1,-77.8,-12.1,-78.1,-24.9C-78.4,-37.7,-64.8,-49.1,-50.7,-55.7C-36.6,-62.3,-22,-64.2,-7.5,-61.8C7,-59.5,14.1,-53,21.1,-62.7C28.2,-72.3,35.2,-98.2,43.3,-74.4Z' transform='translate(100 100)'/%3E%3C/svg%3E"
+        class="background-svg3"
+      />
+    </div>
+    <div class="rorsvg">
+      <svg class="animated-svg" width="100" height="100" viewBox="0 0 100 100">
+        <circle
+          cx="50"
+          cy="50"
+          r="300"
+          stroke="blue"
+          stroke-width="4"
+          fill="lightblue"
+        />
+      </svg>
+    </div>
+    <div class="rorsvg2">
+      <svg class="animated-svg2" width="100" height="100" viewBox="0 0 100 100">
+        <circle
+          cx="50"
+          cy="50"
+          r="300"
+          stroke="red"
+          stroke-width="4"
+          fill="#D8BFD8"
+        />
+      </svg>
+    </div>
+
+    <div class="container">
+      <h1>Government Scheme Eligibility</h1>
+      <img
+        src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cpath fill='%236C63FF' d='M43.3,-74.4C55.7,-67.1,65.6,-55.7,72.3,-43.1C78.9,-30.5,82.3,-16.8,83.4,-2.9C84.5,11,83.3,25,78.6,38.6C73.8,52.1,65.4,65.2,52.8,74C40.2,82.9,23.5,87.5,7.7,81.5C-8.2,75.5,-16.4,59,-24.7,46.4C-33,33.8,-41.3,25.1,-52.5,13.6C-63.7,2.1,-77.8,-12.1,-78.1,-24.9C-78.4,-37.7,-64.8,-49.1,-50.7,-55.7C-36.6,-62.3,-22,-64.2,-7.5,-61.8C7,-59.5,14.1,-53,21.1,-62.7C28.2,-72.3,35.2,-98.2,43.3,-74.4Z' transform='translate(100 100)'/%3E%3C/svg%3E"
+        class="background-svg"
+      />
+
+      <form method="POST">
+        <div class="form-group">
+          <label for="age">Age</label>
+          <input
+            type="number"
+            id="age"
+            name="age"
+            placeholder="Enter your age"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="gender">Gender</label>
+          <select id="gender" name="gender" required>
+            <option value="" disabled selected>Select your gender</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+            <option value="prefer_not_to_say">Prefer not to say</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="marital">Marital Status</label>
+          <select id="marital" name="marital" required>
+            <option value="" disabled selected>Select</option>
+            <option value="married">Married</option>
+            <option value="unmarried">Unmarried</option>
+            <option value="divorced">Divorced</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="state">State</label>
+          <select id="state" name="state" required>
+            <option value="" disabled selected>Select your state</option>
+            <option value="Andhra Pradesh">Andhra Pradesh</option>
+            <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+            <option value="Assam">Assam</option>
+            <option value="Bihar">Bihar</option>
+            <option value="Chhattisgarh">Chhattisgarh</option>
+            <option value="Goa">Goa</option>
+            <option value="Gujarat">Gujarat</option>
+            <option value="Haryana">Haryana</option>
+            <option value="Himachal Pradesh">Himachal Pradesh</option>
+            <option value="Jharkhand">Jharkhand</option>
+            <option value="Karnataka">Karnataka</option>
+            <option value="Kerala">Kerala</option>
+            <option value="Madhya Pradesh">Madhya Pradesh</option>
+            <option value="Maharashtra">Maharashtra</option>
+            <option value="Manipur">Manipur</option>
+            <option value="Meghalaya">Meghalaya</option>
+            <option value="Mizoram">Mizoram</option>
+            <option value="Nagaland">Nagaland</option>
+            <option value="Odisha">Odisha</option>
+            <option value="Punjab">Punjab</option>
+            <option value="Rajasthan">Rajasthan</option>
+            <option value="Sikkim">Sikkim</option>
+            <option value="Tamil Nadu">Tamil Nadu</option>
+            <option value="Telangana">Telangana</option>
+            <option value="Tripura">Tripura</option>
+            <option value="Uttar Pradesh">Uttar Pradesh</option>
+            <option value="Uttarakhand">Uttarakhand</option>
+            <option value="West Bengal">West Bengal</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="urban">Urban or Rural</label>
+          <select id="urban" name="urban" required>
+            <option value="" disabled selected>Select your area type</option>
+            <option value="urban">Urban</option>
+            <option value="rural">Rural</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="income">Annual Income</label>
+          <select id="income" name="income" required>
+            <option value="" disabled selected>
+              Select your annual income range
+            </option>
+            <option value="Below 1 Lakh">Below 1 Lakh</option>
+            <option value="1 Lakh - 2.5 Lakhs">1 Lakh - 2.5 Lakhs</option>
+            <option value="2.5 Lakhs - 5 Lakhs">2.5 Lakhs - 5 Lakhs</option>
+            <option value="5 Lakhs - 10 Lakhs">5 Lakhs - 10 Lakhs</option>
+            <option value="10 Lakhs - 20 Lakhs">10 Lakhs - 20 Lakhs</option>
+            <option value="Above 20 Lakhs">Above 20 Lakhs</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="religion">Religion</label>
+          <select
+            id="religion"
+            name="religion"
+            required
+            onchange="toggleOtherInput('religion', 'otherReligion')"
+          >
+            <option value="" disabled selected>Select your religion</option>
+            <option value="Hinduism">Hinduism</option>
+            <option value="Islam">Islam</option>
+            <option value="Christianity">Christianity</option>
+            <option value="Sikhism">Sikhism</option>
+            <option value="Buddhism">Buddhism</option>
+            <option value="Jainism">Jainism</option>
+            <option value="Zoroastrianism">Zoroastrianism</option>
+            <option value="Judaism">Judaism</option>
+            <option value="Others">Others</option>
+            <input
+              type="text"
+              id="otherReligion"
+              name="otherReligion"
+              placeholder="Please specify"
+              style="display: none; margin-top: 10px"
+            />
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="caste">Caste</label>
+          <select id="caste" name="caste" required>
+            <option value="" disabled selected>Select your caste</option>
+            <option value="General">General (Unreserved)</option>
+            <option value="OBC">OBC (Other Backward Classes)</option>
+            <option value="SC">SC (Scheduled Caste)</option>
+            <option value="ST">ST (Scheduled Tribe)</option>
+            <option value="EWS">EWS (Economically Weaker Section)</option>
+            <option value="Prefer not to say">Prefer not to say</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="education">Education Level</label>
+          <select id="education" name="education" required>
+            <option value="" disabled selected>
+              Select your education level
+            </option>
+            <option value="highschool">High School</option>
+            <option value="diploma">Diploma</option>
+            <option value="undergraduate">Undergraduate</option>
+            <option value="graduate">Graduate</option>
+            <option value="postgraduate">Postgraduate</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="citizenship">Citizenship</label>
+          <select id="citizenship" name="citizenship" required>
+            <option value="" disabled selected>Select your citizenship</option>
+            <option value="indian">Indian</option>
+            <option value="non-indian">Non-Indian</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="employment-status">Employment Status</label>
+          <select
+            id="employment-status"
+            name="employment-status"
+            required
+            onchange="toggleOccupation()"
+          >
+            <option value="" disabled selected>Select employment status</option>
+            <option value="employed">Employed</option>
+            <option value="unemployed">Unemployed</option>
+            <option value="student">Student</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="occupation">Occupation</label>
+          <select
+            id="occupation"
+            name="occupation"
+            required
+            onchange="toggleOtherInput('occupation', 'otherOccupation')"
+          >
+            <option value="" disabled selected>Select your occupation</option>
+            <option value="Engineer">Engineer</option>
+            <option value="Doctor">Doctor</option>
+            <option value="Lawyer">Lawyer</option>
+            <option value="Artist">Artist</option>
+            <option value="Teacher">Teacher</option>
+            <option value="Businessperson">Businessperson</option>
+            <option value="Government Employee">Government Employee</option>
+            <option value="Researcher">Researcher</option>
+            <option value="Freelancer">Farmer</option>
+            <option value="Freelancer">Freelancer</option>
+            <option value="Unemployed">Unemployed</option>
+            <option value="Others">Others</option>
+          </select>
+          <input
+            type="text"
+            id="otherOccupation"
+            name="otherOccupation"
+            placeholder="Please specify"
+            style="display: none; margin-top: 10px"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="sector">Sector of Interest</label>
+          <select
+            id="sector"
+            name="sector"
+            required
+            onchange="toggleOtherInput('sector', 'otherSector')"
+          >
+            <option value="" disabled selected>
+              Select your sector of interest
+            </option>
+            <option value="Technology">
+              Technology (AI, Software, Hardware, etc.)
+            </option>
+            <option value="Finance & Banking">Finance & Banking</option>
+            <option value="Healthcare & Medicine">Healthcare & Medicine</option>
+            <option value="Education & Research">Education & Research</option>
+            <option value="Government & Administration">
+              Government & Administration
+            </option>
+            <option value="Arts & Entertainment">Arts & Entertainment</option>
+            <option value="Manufacturing & Industrial">
+              Manufacturing & Industrial
+            </option>
+            <option value="Environment & Sustainability">
+              Environment & Sustainability
+            </option>
+            <option value="Media & Journalism">Media & Journalism</option>
+            <option value="Sports & Fitness">Sports & Fitness</option>
+            <option value="Travel & Hospitality">Travel & Hospitality</option>
+            <option value="Others">Others</option>
+          </select>
+          <input
+            type="text"
+            id="otherSector"
+            name="otherSector"
+            placeholder="Please specify"
+            style="display: none; margin-top: 10px"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="disability">Disability Status</label>
+          <select id="disability" name="disability" required>
+            <option value="" disabled selected>Select disability status</option>
+            <option value="none">None</option>
+            <option value="physical">Physical Disability</option>
+            <option value="mental">Mental Disability</option>
+            <option value="both">Both</option>
+          </select>
+        </div>
+
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+
+    <div class="footer">
+      &copy; 2025 Naarad | Designed by <a href="#">Techies</a> | Developed under the Government Initiative. All Rights Reserved.
+  </div>
+
+    <script>
+       // Hide loader on page load
+       document.addEventListener("DOMContentLoaded", function() {
+        document.getElementById("loader").style.display = "none";
+      });
+      
+      // Show loader on form submit
+      document.querySelector("form").addEventListener("submit", function() {
+        document.getElementById("loader").style.display = "flex";
+      });
+      
+      function toggleOccupation() {
+        var employmentStatus =
+          document.getElementById("employment-status").value;
+        var occupationField = document.getElementById("occupation");
+
+        if (employmentStatus === "student") {
+          occupationField.disabled = true;
+        } else {
+          occupationField.disabled = false;
+        }
+      }
+      function toggleOtherInput(selectId, inputId) {
+        var selectElement = document.getElementById(selectId);
+        var inputElement = document.getElementById(inputId);
+        if (selectElement.value === "Others") {
+          inputElement.style.display = "block";
+          inputElement.required = true;
+        } else {
+          inputElement.style.display = "none";
+          inputElement.required = false;
+          inputElement.value = "";
+        }
+      }
+    </script>
+  </body>
+</html>

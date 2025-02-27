@@ -1,0 +1,232 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+:root {
+    --primary: #6C63FF;
+    --secondary: #FF6584;
+    --background: #F0F2F5;
+    --text: #333;
+    --border-radius: 10px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: var(--background);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    scroll-behavior: smooth;
+    position: relative;
+}
+
+/* Background Decorative SVG */
+.background-svg {
+    position: absolute;
+    top: -50px;
+    left: -50px;
+    width: 200px;
+    opacity: 0.1;
+    z-index: -1;
+}
+.background-svg1 {
+    position: absolute;
+    top: 50px;
+    right: -50px;
+    width: 200px;
+    opacity: 0.1;
+    z-index: -1;
+}
+.background-svg2 {
+    position: absolute;
+    bottom: 50px;
+    left: -50px;
+    width: 200px;
+    opacity: 0.1;
+    z-index: -1;
+}
+.background-svg3 {
+    position: absolute;
+    bottom: 500px;
+    right: -50px;
+    width: 200px;
+    opacity: 0.1;
+    z-index: -1;
+}
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .logo {
+    width: 60px;
+    height: auto;
+    border-radius: 20px;
+  }
+
+/* Container */
+.container {
+    max-width: 600px;
+    top:-120px;
+    background: white;
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    position: relative;
+}
+
+/* Form Header with SVG */
+.form-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+h1 {
+    font-size: 2rem;
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+/* SVG beside form title */
+.form-header svg {
+    width: 40px;
+    height: 40px;
+    fill: var(--primary);
+}
+
+form {
+    display: grid;
+    gap: 1.5rem;
+    text-align: left;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-weight: 600;
+    color: var(--text);
+}
+
+input, select {
+    padding: 0.75rem;
+    border: 2px solid #ddd;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    transition: border-color 0.3s ease-in-out;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+button {
+    background: var(--primary);
+    color: white;
+    padding: 1rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+button:hover {
+    background: #5A52D5;
+}
+
+/* Hover Effect */
+input:hover, select:hover {
+    border-color: var(--secondary);
+}
+
+.footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    background: linear-gradient(90deg, #c58ae5, #0056b3);
+    color: white;
+    text-align: center;
+    border-radius: 10px;
+    padding: 15px 0;
+    font-size: 16px;
+    font-weight: bold;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
+}
+.footer a {
+    color: #FFD700;
+    text-decoration: none;
+    font-weight: bold;
+}
+.footer a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 1.5rem;
+    }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.container {
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+.rorsvg {
+    position: relative;
+    right: 500px; /* Adjust this value to position it exactly as needed */
+    top: 450px;
+    transform: translateY(-50%);
+}
+.rorsvg2 {
+    position: relative;
+    left: 500px; /* Adjust this value to position it exactly as needed */
+    top: 800px;
+    transform: translateY(-50%);
+}
+
+
+
+/* Interactive SVG */
+.animated-svg {
+    width: 100px;
+    height: 100px;
+    /* margin: 20px auto; */
+    animation: rotate 5s infinite linear;
+  }
+
+  .animated-svg2 {
+    width: 100px;
+    height: 100px;
+    /* margin: 20px auto; */
+    animation: rotate 5s infinite linear;
+  }
+  
+  @keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
